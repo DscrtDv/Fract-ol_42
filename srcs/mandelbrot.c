@@ -6,7 +6,7 @@
 /*   By: tcensier <tcensier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/23 19:25:33 by tcensier      #+#    #+#                 */
-/*   Updated: 2023/05/23 22:55:43 by tim           ########   odam.nl         */
+/*   Updated: 2023/05/24 00:25:45 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void    mandel_calc(t_fractol *data, double c_re, double c_im)
     while (data->current_it < data->max_it)
     {
         if (magnitude(z_re, z_im) > 4)
-            mlx_put_pixel(data->img, data->x, data->y, 0xff0000);
+            mlx_put_pixel(data->img, data->x, data->y, 0xffffff);
         z_im = 2 * z_re * z_im + c_im;
         z_re = (z_re * z_re) - (z_im * z_im) + c_re;
         data->current_it++;
