@@ -4,7 +4,7 @@ SRCDIR 			= srcs
 INCLUDE_DIR 	= includes
 CC 				= gcc
 
-SRC 			= main.c \
+SRC 			= main.c mandelbrot.c utils.c
 
 INC 			:= -I $(INCLUDE_DIR)
 
@@ -13,7 +13,7 @@ OBJ 			= $(addprefix objs/, $(SRC:.c=.o))
 MLX 			= ./MLX42/
 MLX_LIB 		= $(addprefix $(MLX), libmlx42.a)
 MLX_INC			= -I ./MLX42/include
-CFLAGS 			= -Wall -Werror -Wextra -pthread -Ofast $(INC)
+CFLAGS 			= -Wall -Wextra -pthread -Ofast $(INC)
 
 GREEN		=	\e[38;5;118m
 YELLOW		=	\e[38;5;226m
