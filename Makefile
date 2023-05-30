@@ -4,7 +4,9 @@ SRCDIR 			= srcs
 INCLUDE_DIR 	= includes
 CC 				= gcc
 
-SRC 			= main.c mandelbrot.c utils.c
+SRC 			= 	main.c mandelbrot.c init.c \
+					colors.c \
+					key_hooks.c display.c\
 
 INC 			:= -I $(INCLUDE_DIR)
 
@@ -13,7 +15,7 @@ OBJ 			= $(addprefix objs/, $(SRC:.c=.o))
 MLX 			= ./MLX42/
 MLX_LIB 		= $(addprefix $(MLX), libmlx42.a)
 MLX_INC			= -I ./MLX42/include
-CFLAGS 			= -Wall -Wextra -pthread -Ofast $(INC)
+CFLAGS 			= -Wall -Werror -Wextra -pthread -Ofast $(INC)
 
 GREEN		=	\e[38;5;118m
 YELLOW		=	\e[38;5;226m
@@ -26,7 +28,7 @@ all: $(TARGET)
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S), Linux)
 	MLXFLAGS = -ldl -lglfw
-	CFLAGS += -Wunused-result
+
 else ifeq ($(UNAME_S), Darwin)
 	MLXFLAGS = -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/
 endif

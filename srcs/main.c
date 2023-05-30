@@ -6,46 +6,35 @@
 /*   By: tcensier <tcensier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/16 17:06:49 by tcensier      #+#    #+#                 */
-/*   Updated: 2023/05/23 22:34:35 by tim           ########   odam.nl         */
+/*   Updated: 2023/05/30 12:35:02 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 //-------------------------------------------------------------------------
 
-void	init_window(t_fractol *data)
-{
-	data->mlx = mlx_init(WIDTH, HEIGHT, "Fractol", false);
-	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-}
-
-void	init_mandelbrot(t_fractol *data)
-{
-	data->x = 0;
-	data->y = 0;
-	data->max_it = 50;
-	data->current_it = 0;
-	data->min_re = -2.0;
-	data->max_re = 1.0;
-	data->min_im = -1.2;
-	data->max_im = data->min_im + (data->max_re - data->min_re) * (HEIGHT / WIDTH);
-	data->re_factor = (data->max_re - data->min_re)/(WIDTH);
-	data->im_factor = (data->max_im - data->min_im)/(HEIGHT);
-}
-
 //-------------------------------------------------------------------------
+
+static void	hooks(fractol_t *data)
+{
+	mlx_key_hook(data->mlx, &init_hooks, data);
+	mlx_resize_hook(data->mlx, &resize_window, data);
+	mlx_loop_hook(data->mlx, &mandelbrot, data);
+}
 
 int32_t	main(void)
 {
-	t_fractol	*data;
+	fractol_t		*data;
 
-	data = (t_fractol *)malloc(sizeof(t_fractol));
+	data = (fractol_t *)malloc(sizeof(fractol_t));
 	if (!data)
 		return (EXIT_FAILURE);
-	init_window(data);
 	init_mandelbrot(data);
-	mandelbrot(data);
+	init_fractol(data);
+	hooks(data);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
 	mlx_loop(data->mlx);
+	mlx_terminate(data->mlx);
+	
 	return (EXIT_SUCCESS);
 }
