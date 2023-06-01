@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   key_hooks.c                                        :+:    :+:            */
+/*   utils.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/05/29 14:15:35 by tim           #+#    #+#                 */
-/*   Updated: 2023/05/29 17:27:07 by tim           ########   odam.nl         */
+/*   Created: 2023/06/01 17:21:39 by tim           #+#    #+#                 */
+/*   Updated: 2023/06/01 17:22:47 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void    init_hooks(mlx_key_data_t ks, void *param)
+size_t	ft_strlen(const char *str)
 {
-    fractol_t *data;
-    data = param;
-    if ((ks.key == 'R' || ks.key == 'G' ||\
-        ks.key == 'B' || ks.key == 'A') &&\
-        ks.action == MLX_PRESS)
-        increment_rgba(data, ks.key);
-    else if (ks.key == 'Z' && ks.action == MLX_PRESS)
-        reset_color(data);
+	size_t	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	while (n && *s1 && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+		n--;
+	}
+	if (n == 0)
+		return (0);
+	else
+		return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

@@ -6,18 +6,34 @@
 /*   By: tcensier <tcensier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/23 19:25:33 by tcensier      #+#    #+#                 */
-/*   Updated: 2023/05/30 12:36:30 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/01 18:22:15 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+void	init_mandelbrot(fractol_t *data)
+{
+    data->name = "Mandelbrot";
+	data->max_it = 40;
+    data->win.width = 1080;
+    data->win.height = 700;
+	data->complex.min_re = -2.0;
+	data->complex.max_re = 0.47;
+	data->complex.min_im = 1.12;
+    data->complex.max_im = -1.12;
+    data->pos.x = 0;
+	data->pos.y = 0;
+    set_rgba(data);
+    center_fractal(data);
+}
 
 static double  magnitude(double z_re, double z_im)
 {
     return ((z_re*z_re + z_im*z_im) > 4);
 }
 
-static void    mandel_calc(fractol_t *data, double c_re, double c_im)
+int    mandel_calc(fractol_t *data, double re, double im)
 {
     double          x;
     double          y;
@@ -30,36 +46,10 @@ static void    mandel_calc(fractol_t *data, double c_re, double c_im)
     while (i < data->max_it && !magnitude(x, y))
     {
         temp = x;
-        x = (x*x) - (y*y) + c_re;
-        y = (2 * temp * y) - c_im;
+        x = (x*x) - (y*y) + re;
+        y = (2 * temp * y) - im;
         i++;
     }
-    if (i == data->max_it)
-        mlx_put_pixel(data->img, data->pos.x, data->pos.y, 0x0000FF);
-    else
-        mlx_put_pixel(data->img, data->pos.x, data->pos.y, set_color(data, i));
-}
-
-void    mandelbrot(void *param)
-{
-    double          c_im;
-    double          c_re;
-    fractol_t       *data;
-
-    data = param;
-    c_im = 0;
-    c_re = 0;
-    while (data->pos.x < data->win.width)
-    {
-        data->pos.y = 0;
-        while (data->pos.y < data->win.height)
-        {
-            c_re = data->complex.min_re + (data->pos.x * data->complex.re_factor);
-            c_im = data->complex.max_im - (data->pos.y * data->complex.im_factor);
-            mandel_calc(data, c_re, c_im);
-            data->pos.y++;
-        }
-        data->pos.x++;
-    }
+    return (i);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tcensier <tcensier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/16 17:06:49 by tcensier      #+#    #+#                 */
-/*   Updated: 2023/05/30 12:35:02 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/01 17:11:13 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	hooks(fractol_t *data)
 {
 	mlx_key_hook(data->mlx, &init_hooks, data);
 	mlx_resize_hook(data->mlx, &resize_window, data);
-	mlx_loop_hook(data->mlx, &mandelbrot, data);
+	mlx_loop_hook(data->mlx, &loop_hook, data);
 }
 
 int32_t	main(void)

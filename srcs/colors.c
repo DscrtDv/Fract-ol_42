@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/28 21:21:12 by tim           #+#    #+#                 */
-/*   Updated: 2023/05/30 11:08:42 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/01 17:37:32 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ uint32_t	set_color(fractol_t *data, int iter)
 	g = data->color.g * iter;
 	b = data->color.b * iter;
 	return (r << 24 | g << 16 | b << 8 | data->color.a);
+}
+
+void	draw_pixel(fractol_t *data, int x, int y, int iter)
+{
+	if (iter == data->max_it)
+		mlx_put_pixel(data->img, x, y, 0x000000FF);
+	else
+		mlx_put_pixel(data->img, x, y, set_color(data, iter));
 }
 
 static void check_color(uint8_t *color)

@@ -6,7 +6,7 @@
 /*   By: tcensier <tcensier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/16 17:06:35 by tcensier      #+#    #+#                 */
-/*   Updated: 2023/05/30 12:36:10 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/01 17:46:26 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../libft/includes/libft.h"
 # include <math.h>
 # include <stdio.h>
+# include <stddef.h>
 
 typedef struct      s_window
 {
@@ -43,8 +44,6 @@ typedef struct		s_complex
     double          max_re;
     double          min_im;
     double          max_im;
-    double          re_factor;
-    double          im_factor;	
 }					complex_t;
 
 typedef struct      s_fractol
@@ -59,7 +58,9 @@ typedef struct      s_fractol
 	rgba_t			color;
 }                   fractol_t;
 
-void        mandelbrot(void *param);
+//frac
+void        render(fractol_t *data);
+int         mandel_calc(fractol_t *data, double re, double im);
 
 //init
 void	    init_fractol(fractol_t *data);
@@ -68,14 +69,20 @@ void        init_mandelbrot(fractol_t *data);
 //colors
 void        set_rgba(fractol_t *data);
 uint32_t    set_color(fractol_t *data, int iter);
+void	    draw_pixel(fractol_t *data, int x, int y, int iter);
 void        increment_rgba(fractol_t *data, int key);
 
-//key_hooks
+//hooks
+void        loop_hook(void *param);
 void        init_hooks(mlx_key_data_t ks, void *param);
 void        reset_color(fractol_t *data);
 
 //display
 void        center_fractal(fractol_t *data);
 void        resize_window(int32_t width, int32_t height, void *param);
+
+//utils
+size_t      ft_strlen(const char *str);
+int         ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif

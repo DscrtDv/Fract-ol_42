@@ -5,8 +5,8 @@ INCLUDE_DIR 	= includes
 CC 				= gcc
 
 SRC 			= 	main.c mandelbrot.c init.c \
-					colors.c \
-					key_hooks.c display.c\
+					colors.c renderer.c \
+					hooks.c display.c utils.c\
 
 INC 			:= -I $(INCLUDE_DIR)
 
