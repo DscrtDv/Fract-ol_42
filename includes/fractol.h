@@ -6,7 +6,7 @@
 /*   By: tcensier <tcensier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/16 17:06:35 by tcensier      #+#    #+#                 */
-/*   Updated: 2023/06/01 17:46:26 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/02 01:20:41 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 # include <stdio.h>
 # include <stddef.h>
 
+/*
+    -Arg
+    -Arg check
+    -mem leak check
+    -clean-up
+*/
+
+
 typedef struct      s_window
 {
     int32_t         width;
@@ -26,8 +34,8 @@ typedef struct      s_window
 
 typedef struct		s_pos
 {
-	int			x;
-	int			y;
+	double			x;
+	double			y;
 }					pos_t;
 
 typedef struct      s_rgba
@@ -44,6 +52,8 @@ typedef struct		s_complex
     double          max_re;
     double          min_im;
     double          max_im;
+    double          c_re;
+    double          c_im;
 }					complex_t;
 
 typedef struct      s_fractol
@@ -60,11 +70,16 @@ typedef struct      s_fractol
 
 //frac
 void        render(fractol_t *data);
+double      get_coord_x(fractol_t *data, int x);
+double      get_coord_y(fractol_t *data, int y);
 int         mandel_calc(fractol_t *data, double re, double im);
-
+int         julia_calc(fractol_t *data, double re, double im);
+int         bs_calc(fractol_t *data, double re, double im);
 //init
 void	    init_fractol(fractol_t *data);
-void        init_mandelbrot(fractol_t *data);
+void        init_mandelbrot(fractol_t *data, bool first_init);
+void        init_julia(fractol_t *data, bool first_init);
+void	    init_bs(fractol_t *data, bool first_init);
 
 //colors
 void        set_rgba(fractol_t *data);
@@ -81,8 +96,13 @@ void        reset_color(fractol_t *data);
 void        center_fractal(fractol_t *data);
 void        resize_window(int32_t width, int32_t height, void *param);
 
+//zoom
+void        zoom(double y_delta, double x_delta, void *param);
+
 //utils
 size_t      ft_strlen(const char *str);
 int         ft_strncmp(const char *s1, const char *s2, size_t n);
+double      magnitude(double z_re, double z_im);
+void	    reset(fractol_t *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/01 17:21:39 by tim           #+#    #+#                 */
-/*   Updated: 2023/06/01 17:22:47 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/02 00:16:30 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,14 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		return (0);
 	else
 		return (*(unsigned char *)s1 - *(unsigned char *)s2);
+}
+
+double  magnitude(double z_re, double z_im)
+{
+    return ((z_re*z_re + z_im*z_im) > 4);
+}
+
+void	reset(fractol_t *data)
+{
+	init_mandelbrot(data, false);
 }

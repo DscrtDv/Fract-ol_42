@@ -6,23 +6,20 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/28 21:21:12 by tim           #+#    #+#                 */
-/*   Updated: 2023/06/01 17:37:32 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/01 23:47:12 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-/* Start colour settings for fractals */
 void	set_rgba(fractol_t *data)
 {
-	data->color.r = 2;
+	data->color.r = 6;
 	data->color.g = 1;
-	data->color.b = 6;
+	data->color.b = 2;
 	data->color.a = 255;
 }
 
-/* RGB values are based on how many iterations it take for a
-coordinate to escape a circle of radius 2 */
 uint32_t	set_color(fractol_t *data, int iter)
 {
 	uint8_t	r;
@@ -43,24 +40,16 @@ void	draw_pixel(fractol_t *data, int x, int y, int iter)
 		mlx_put_pixel(data->img, x, y, set_color(data, iter));
 }
 
-static void check_color(uint8_t *color)
-{
-    if (*color == 255)
-        *color -= 2;
-    else
-        *color += 2;
-}
-
 void        increment_rgba(fractol_t *data, int key)
 {
     if (key == 'R')
-        check_color(&data->color.r);
+        data->color.r += 2;
     else if (key == 'G')
-        check_color(&data->color.g);
+        data->color.g += 2;
     else if (key == 'B')
-        check_color(&data->color.b);
+        data->color.b += 2;
     else if (key == 'A' && data->color.a != 0)
-        data->color.a -= 2;
+		data->color.a -= 2;
 }
 
 void        reset_color(fractol_t *data)
