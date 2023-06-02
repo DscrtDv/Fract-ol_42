@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 14:15:35 by tim           #+#    #+#                 */
-/*   Updated: 2023/06/01 23:52:46 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/02 14:23:50 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void    init_hooks(mlx_key_data_t ks, void *param)
         ks.key == 'B' || ks.key == 'A'))
         increment_rgba(data, ks.key);
     else if (ks.key == 'Z' && ks.action == MLX_PRESS)
-        reset(data);
+        set_up(data, false);
     else if (ks.key == 'I' && ks.action == MLX_PRESS)
         data->max_it += 10;
     else if ((ks.key == 'O' && data->max_it != 0) && ks.action == MLX_PRESS)

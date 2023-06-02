@@ -6,17 +6,17 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/28 21:21:12 by tim           #+#    #+#                 */
-/*   Updated: 2023/06/01 23:47:12 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/02 14:21:28 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	set_rgba(fractol_t *data)
+void	set_rgba(fractol_t *data, int r, int g, int b)
 {
-	data->color.r = 6;
-	data->color.g = 1;
-	data->color.b = 2;
+	data->color.r = r;
+	data->color.g = g;
+	data->color.b = b;
 	data->color.a = 255;
 }
 
@@ -50,9 +50,4 @@ void        increment_rgba(fractol_t *data, int key)
         data->color.b += 2;
     else if (key == 'A' && data->color.a != 0)
 		data->color.a -= 2;
-}
-
-void        reset_color(fractol_t *data)
-{
-    set_rgba(data);
 }

@@ -6,17 +6,17 @@
 /*   By: tcensier <tcensier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/16 17:06:35 by tcensier      #+#    #+#                 */
-/*   Updated: 2023/06/02 01:20:41 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/02 14:45:26 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # include "../MLX42/include/MLX42/MLX42.h"
-# include "../libft/includes/libft.h"
 # include <math.h>
-# include <stdio.h>
 # include <stddef.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 /*
     -Arg
@@ -68,21 +68,25 @@ typedef struct      s_fractol
 	rgba_t			color;
 }                   fractol_t;
 
-//frac
+//render
 void        render(fractol_t *data);
 double      get_coord_x(fractol_t *data, int x);
 double      get_coord_y(fractol_t *data, int y);
+
+//fractal
 int         mandel_calc(fractol_t *data, double re, double im);
 int         julia_calc(fractol_t *data, double re, double im);
 int         bs_calc(fractol_t *data, double re, double im);
+
 //init
 void	    init_fractol(fractol_t *data);
+void        set_up(fractol_t *data, bool first_init);
 void        init_mandelbrot(fractol_t *data, bool first_init);
 void        init_julia(fractol_t *data, bool first_init);
 void	    init_bs(fractol_t *data, bool first_init);
 
 //colors
-void        set_rgba(fractol_t *data);
+void        set_rgba(fractol_t *data, int r, int g, int b);
 uint32_t    set_color(fractol_t *data, int iter);
 void	    draw_pixel(fractol_t *data, int x, int y, int iter);
 void        increment_rgba(fractol_t *data, int key);
@@ -90,7 +94,6 @@ void        increment_rgba(fractol_t *data, int key);
 //hooks
 void        loop_hook(void *param);
 void        init_hooks(mlx_key_data_t ks, void *param);
-void        reset_color(fractol_t *data);
 
 //display
 void        center_fractal(fractol_t *data);
@@ -103,6 +106,8 @@ void        zoom(double y_delta, double x_delta, void *param);
 size_t      ft_strlen(const char *str);
 int         ft_strncmp(const char *s1, const char *s2, size_t n);
 double      magnitude(double z_re, double z_im);
-void	    reset(fractol_t *data);
 
+//errors
+int         check_args(fractol_t *data, int argc, char **argv);
+int         error_msg(void);
 #endif

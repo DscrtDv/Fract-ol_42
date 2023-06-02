@@ -6,7 +6,7 @@
 /*   By: tcensier <tcensier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/23 19:25:33 by tcensier      #+#    #+#                 */
-/*   Updated: 2023/06/02 00:16:22 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/02 14:26:24 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_mandelbrot(fractol_t *data, bool first_init)
 {
     data->name = "Mandelbrot";
-	data->max_it = 50;
+	data->max_it = 100;
     if (first_init)
     {
         data->win.width = 1080;
@@ -27,7 +27,7 @@ void	init_mandelbrot(fractol_t *data, bool first_init)
     data->complex.max_im = -2.0;
     data->pos.x = 0;
 	data->pos.y = 0;
-    set_rgba(data);
+    set_rgba(data, 6, 1, 2);
     center_fractal(data);
 }
 

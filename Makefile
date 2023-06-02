@@ -6,8 +6,8 @@ CC 				= gcc
 
 SRC 			= 	main.c mandelbrot.c init.c \
 					colors.c renderer.c zoom.c \
-					hooks.c display.c utils.c \
-					julia.c burning_ship.c\
+					hooks.c display.c utils.c  error.c\
+					julia.c burning_ship.c checker.c\
 
 INC 			:= -I $(INCLUDE_DIR)
 
@@ -16,7 +16,7 @@ OBJ 			= $(addprefix objs/, $(SRC:.c=.o))
 MLX 			= ./MLX42/
 MLX_LIB 		= $(addprefix $(MLX), libmlx42.a)
 MLX_INC			= -I ./MLX42/include
-CFLAGS 			= -Wall -Werror -Wextra -pthread -Ofast $(INC)
+CFLAGS 			= -Wall -Wextra -pthread -Ofast $(INC)
 
 GREEN		=	\e[38;5;118m
 YELLOW		=	\e[38;5;226m

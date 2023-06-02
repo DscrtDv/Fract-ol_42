@@ -6,11 +6,21 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/28 20:31:24 by tim           #+#    #+#                 */
-/*   Updated: 2023/06/01 17:30:26 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/02 14:23:24 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+void        set_up(fractol_t *data, bool first_init)
+{
+    if (ft_strncmp(data->name, "Mandelbrot", ft_strlen("Mandelbrot")) == 0)
+        init_mandelbrot(data, first_init);
+    else if (ft_strncmp(data->name, "Julia", ft_strlen("Julia")) == 0)
+        init_julia(data, first_init);
+    else
+        init_bs(data, first_init);
+}
 
 void       init_fractol(fractol_t *data)
 {

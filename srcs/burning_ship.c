@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/02 01:11:08 by tim           #+#    #+#                 */
-/*   Updated: 2023/06/02 01:18:16 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/02 14:28:58 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_bs(fractol_t *data, bool first_init)
 {
     data->name = "Burning Ship";
-	data->max_it = 50;
+	data->max_it = 100;
     if (first_init)
     {
         data->win.width = 1080;
@@ -25,7 +25,7 @@ void	init_bs(fractol_t *data, bool first_init)
 	data->complex.max_re = 2.0;
 	data->complex.min_im = 2.0;
     data->complex.max_im = -2.0;
-tim@POTSKED:~/Documents/Codam/projects/Fract-ol_42$ 
+    set_rgba(data, 5, 2, 12);
     center_fractal(data);
 }
 

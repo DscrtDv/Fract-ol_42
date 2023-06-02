@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/02 00:14:57 by tim           #+#    #+#                 */
-/*   Updated: 2023/06/02 00:33:15 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/02 14:26:28 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void    init_julia(fractol_t *data, bool first_init)
 {
     data->name = "Julia";
-	data->max_it = 50;
+	data->max_it = 100;
     if (first_init)
     {
         data->win.width = 1080;
@@ -29,7 +29,7 @@ void    init_julia(fractol_t *data, bool first_init)
 	data->complex.c_im = 0.27015;
     data->pos.x = 0;
 	data->pos.y = 0;
-    set_rgba(data);
+    set_rgba(data, 2, 12, 4);
     center_fractal(data);
 }
 
