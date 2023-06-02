@@ -6,11 +6,21 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/01 17:21:39 by tim           #+#    #+#                 */
-/*   Updated: 2023/06/02 14:22:57 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/02 18:47:54 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+int	ft_isdigit(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+int	ft_isspace(char c)
+{
+	return (c == ' ');
+}
 
 size_t	ft_strlen(const char *str)
 {
@@ -36,7 +46,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
 
-double  magnitude(double z_re, double z_im)
+double	magnitude(double z_re, double z_im)
 {
-    return ((z_re*z_re + z_im*z_im) > 4);
+	return ((z_re * z_re + z_im * z_im) > 4);
 }

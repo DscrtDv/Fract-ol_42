@@ -6,26 +6,33 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/02 14:29:36 by tim           #+#    #+#                 */
-/*   Updated: 2023/06/02 14:45:56 by tim           ########   odam.nl         */
+/*   Updated: 2023/06/02 18:57:06 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-
-static void ft_putstr_fd(char *s)
+static void	ft_putstr_fd(char *s)
 {
-    write(1, s, ft_strlen(s));
+	write(1, s, ft_strlen(s));
 }
 
-int    error_msg(void)
+//norm nightmare hah lmao shoot me
+int	error_msg(void)
 {
-    ft_putstr_fd(" ___________________________________________________________\n");
-    ft_putstr_fd("|[!] An error occured while passing the arguments:          |\n");
-    ft_putstr_fd("|[?] To generate the Mandelbrot set: ./fractol Mandelbrot   |\n");
-    ft_putstr_fd("|[?] To generate the Julia set: ./fractol Julia xx.xx xx.xx |\n");
-    ft_putstr_fd("|   [-] xx.xx as floating numbers, between(2 | -2)          |\n");
-    ft_putstr_fd("|[?] To generate the BurningShip set: ./fractol BurningShip |\n");
-    ft_putstr_fd("|___________________________________________________________|\n");
-    return (false);
+	ft_putstr_fd(" ___________________________\
+	________________________________\n");
+	ft_putstr_fd("|[!] An error occured while \
+	passing the arguments:          |\n");
+	ft_putstr_fd("|[?] To generate the Mandelb\
+	rot set: ./fractol Mandelbrot   |\n");
+	ft_putstr_fd("|[?] To generate the Julia s\
+	et: ./fractol Julia xx.xx xx.xx |\n");
+	ft_putstr_fd("|   [-] xx.xx as floating nu\
+	mbers, between(2 | -2)          |\n");
+	ft_putstr_fd("|[?] To generate the Burning\
+	Ship set: ./fractol BurningShip |\n");
+	ft_putstr_fd("|___________________________\
+	________________________________|\n");
+	return (false);
 }
